@@ -1,9 +1,9 @@
 package com.company;
 
-public class Worm extends Animal{
+public class Worm extends AgedAnimal {
 
     public Worm(int age) {
-        this.type = Type.WORM;
+        super(age);
         this.maxAge = 3;
         this.age = age;
         this.state = this.age > this.maxAge ? State.DEAD : State.ALIVE;

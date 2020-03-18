@@ -1,18 +1,18 @@
 package com.company;
 
 import java.io.*;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public class Main implements Runnable {
 
-    List<Animal> zoo = new ArrayList<>();
-    public static void main(String[] args) { new Main().run(); }
+    private List<Animal> zoo = new ArrayList<>();
+
+    public static void main(String[] args) {
+        new Main().run();
+    }
 
     @Override
     public void run() {
@@ -27,37 +27,30 @@ public class Main implements Runnable {
                 ">4 - Eat",
                 ">5 - Quit"
         };
+        Map<Integer, Consumer<Void>> menuMap = Map.ofEntries(
+                Map.entry(1, v -> createAnimal(reader, writer)),
+                Map.entry(2, v -> printList(writer)),
+                Map.entry(3, v -> attackAnimal(reader, writer)),
+                Map.entry(4, v -> eatAnimal(reader, writer))
+        );
 
-        loop:
-        while (true){
-            writeArray(writer, menuPoints);
-            int cmd = readIntOrAction(reader, () -> -1);
-            switch (cmd){
-                case 1:
-                    createAnimal(reader, writer);
-                    break;
-                case 2:
-                    printList(writer);
-                    break;
-                case 3:
-                    attackAnimal(reader, writer);
-                    break;
-                case 4:
-                    eatAnimal(reader, writer);
-                    break;
-                case 5:
-                    break loop;
-                default:
-                    writeString(writer, "Incorrect command, please try again");
-                    break;
+        while (true) {
+            Tools.writeArray(writer, menuPoints);
+
+            int cmd = Tools.readPositiveIntOrAction(reader, () -> -1);
+            Consumer<Void> consumer;
+            if(cmd == 5 || (consumer = menuMap.get(cmd)) == null) {
+                String text = cmd == 5 ? "Good bye" : "Incorrect command, please try again";
+                Tools.writeString(writer, text);
+                break;
             }
 
+            consumer.accept(null);
         }
-
     }
 
 
-    public void createAnimal(BufferedReader reader, BufferedWriter writer){
+    public void createAnimal(BufferedReader reader, BufferedWriter writer) {
         String[] menuPoints = {
                 "Choose animal type",
                 ">1 - Cat",
@@ -65,186 +58,93 @@ public class Main implements Runnable {
                 ">3 - Bird",
                 ">4 - Worm"
         };
-        writeArray(writer, menuPoints);
-        int cmd = readIntOrAction(reader, () -> -1);
-        int age;
-        switch (cmd){
-            case 1:
-                writeString(writer, "Enter age of cat");
-                age = readIntOrAction(reader, () -> {
-                    writeString(writer, "Incorrect age, cancelled");
-                    return -1;
-                });
-                if (age != -1) {
-                    Cat cat = new Cat(age);
-                    zoo.add(cat);
-                }
-                break;
+        Map<Integer, Class> commandMap = Map.of(
+                1, Cat.class,
+                2, Mouse.class,
+                3, Bird.class,
+                4, Worm.class);
 
-            case 2:
-                writeString(writer, "Enter age of mouse");
-                age = readIntOrAction(reader, () -> {
-                    writeString(writer, "Incorrect age, cancelled");
-                    return -1;
-                });
-                if (age != -1) {
-                    Mouse mouse = new Mouse(age);
-                    zoo.add(mouse);
-                }
-                break;
+        Tools.writeArray(writer, menuPoints);
 
-            case 3:
-                writeString(writer, "Enter age of bird");
-                age = readIntOrAction(reader, () -> {
-                    writeString(writer, "Incorrect age, cancelled");
-                    return -1;
-                });
-                if (age != -1) {
-                    Bird bird = new Bird(age);
-                    zoo.add(bird);
-                }
-                break;
+        int cmd = Tools.readPositiveIntOrAction(reader, () -> -1);
 
-            case 4:
-                writeString(writer, "Enter age of worm");
-                age = readIntOrAction(reader, () -> {
-                    writeString(writer, "Incorrect age, cancelled");
-                    return -1;
-                });
-                if (age != -1) {
-                    Worm worm = new Worm(age);
-                    zoo.add(worm);
-                }
-                break;
-
-            default:
-                createAnimal(reader, writer);
-                writeString(writer, "Incorrect type of animal, try again");
-
+        Class clazz;
+        if ((clazz = commandMap.get(cmd)) == null) {
+            Tools.writeString(writer, "Incorrect type of animal, try again");
+            createAnimal(reader, writer);
+            return;
         }
 
+        Tools.writeString(writer, "Enter age of " + clazz.getSimpleName());
+        int age = Tools.readPositiveIntOrAction(reader, () -> {
+            Tools.writeString(writer, "Incorrect age, cancelled");
+            return -1;
+         });
+         if (age != -1) {
+            Animal animal = Tools.createAgedAnimalByClass(clazz, age);
+            zoo.add(animal);
+         }
     }
 
-    public void printList(BufferedWriter writer){
+    public void printList(BufferedWriter writer) {
         for (int i = 0; i < zoo.size(); ++i) {
             Animal tmp = zoo.get(i);
-            writeString(writer, Integer.toString(i));
+            Tools.writeString(writer, Integer.toString(i));
             tmp.print(writer);
         }
     }
 
-    public void attackAnimal(BufferedReader reader, BufferedWriter writer){
-        writeString(writer, "Choose attacker by index: ");
-        int attackerIndex = readIntOrAction(reader, () -> {
-            writeString(writer, "Incorrect index, try again");
+    public void attackAnimal(BufferedReader reader, BufferedWriter writer) {
+        Tools.writeString(writer, "Choose attacker by index: ");
+        int attackerIndex = Tools.readPositiveIntOrAction(reader, () -> {
+            Tools.writeString(writer, "Incorrect index, try again");
             return -1;
         });
 
-        writeString(writer, "Choose target by index: ");
-        int targetIndex = readIntOrAction(reader, () -> {
-            writeString(writer, "Incorrect index, try again");
+        Tools.writeString(writer, "Choose target by index: ");
+        int targetIndex = Tools.readPositiveIntOrAction(reader, () -> {
+            Tools.writeString(writer, "Incorrect index, try again");
             return -1;
         });
 
         if (targetIndex == -1 || attackerIndex == -1) {
             attackAnimal(reader, writer);
-        }
-        else if (targetIndex == attackerIndex){
-            writeString(writer, "Animal cant attack itself, try again");
+        } else if (targetIndex == attackerIndex) {
+            Tools.writeString(writer, "Animal cant attack itself, try again");
             attackAnimal(reader, writer);
-        }
-        else{
+        } else {
             Result result = zoo.get(attackerIndex).attack(zoo.get(targetIndex));
-            switch (result){
-                case FAIL:
-                    writeString(writer, "Attack failed");
-                    break;
-                case SUCCESS:
-                    writeString(writer, "Attack succeed");
-                    break;
-                case WHAT:
-                    writeString(writer, "It wouldn't attack this");
-                    break;
-            }
+            Map<Result, String> resultOfAttack = Map.of(
+                Result.FAIL, "Attack failed",
+                Result.SUCCESS, "Attack succeed",
+                Result.WHAT, "It wouldn't attack this");
+            Tools.writeString(writer, resultOfAttack.get(result));
         }
 
     }
 
-    public void eatAnimal(BufferedReader reader, BufferedWriter writer){
-        writeString(writer, "Choose feeding animal by index: ");
-        int feedingIndex = readIntOrAction(reader, () -> {
-            writeString(writer, "Incorrect index, try again");
-            return -1;
-        });
+    public void eatAnimal(BufferedReader reader, BufferedWriter writer) {
+        Tools.writeString(writer, "Choose feeding animal by index: ");
+        int feedingIndex = Tools.readPositiveIntOrAction(reader, () -> -1);
 
-        writeString(writer, "Choose target by index: ");
-        int targetIndex = readIntOrAction(reader, () -> {
-            writeString(writer, "Incorrect index, try again");
-            return -1;
-        });
+        Tools.writeString(writer, "Choose target by index: ");
+        int targetIndex = Tools.readPositiveIntOrAction(reader, () -> -1);
 
         if (targetIndex == -1 || feedingIndex == -1) {
+            Tools.writeString(writer, "Incorrect index, try again");
             attackAnimal(reader, writer);
-        }
-        else if (targetIndex == feedingIndex){
-            writeString(writer, "Animal cant eat itself, try again");
+        } else if (targetIndex == feedingIndex) {
+            Tools.writeString(writer, "Animal cant eat itself, try again");
             attackAnimal(reader, writer);
-        }
-        else{
+        } else {
             Result result = zoo.get(feedingIndex).eat(zoo.get(targetIndex));
-            switch (result){
-                case FAIL:
-                    writeString(writer, "It cant eat it");
-                    break;
-                case SUCCESS:
-                    writeString(writer, "It ate this");
-                    zoo.remove(targetIndex);
-                    break;
-                case WHAT:
-                    writeString(writer, "It wouldn't eat it");
-                    break;
-            }
+            Map<Result, String> resultOfEating = Map.of(
+                Result.FAIL, "It cant eat it",
+                Result.SUCCESS, "It ate it",
+                Result.WHAT, "It wouldn't eat it"
+            );
+            Tools.writeString(writer, resultOfEating.get(result));
         }
     }
-
-    //TOOLS
-    public static void writeArray(BufferedWriter writer, String[] texts){
-        for (String text : texts) {
-            try {
-                writer.write(text);
-                writer.newLine();
-                writer.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-
-
-    public static int readIntOrAction(BufferedReader reader, Supplier<Integer> action){
-        try{
-            int _int = Integer.parseInt(reader.readLine());
-            if (_int >= 0)
-                return _int;
-            else
-                throw new NumberFormatException();
-        }
-        catch (NumberFormatException | IOException nfeio){
-            return action.get();
-        }
-    }
-
-    public static void writeString(BufferedWriter writer, String string){
-        try {
-            writer.write(string);
-            writer.newLine();
-            writer.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
 
 }

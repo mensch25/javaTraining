@@ -1,11 +1,17 @@
 package com.company;
 
+import java.util.Map;
 import java.util.Random;
 
-public class Bird extends Animal{
+public class Bird extends AgedAnimal {
+
+    private static Map<Class, Integer> coeffMap = Map.ofEntries(
+            Map.entry(Bird.class, 1),
+            Map.entry(Mouse.class, 2),
+            Map.entry(Worm.class, 5));
 
     public Bird(int age) {
-        this.type = Type.BIRD;
+        super(age);
         this.maxAge = 5;
         this.age = age;
         this.state = this.age > this.maxAge ? State.DEAD : State.ALIVE;
@@ -13,51 +19,32 @@ public class Bird extends Animal{
 
     @Override
     public Result attack(Animal target) {
-        if (target.getType() == Type.CAT || target.isAlive() == State.DEAD || this.state == State.DEAD){
+        Integer coeff;
+        if (target instanceof Cat || !target.isAlive() || this.state == State.DEAD ||
+                (coeff = coeffMap.get(target.getClass())) == null) {
             return Result.WHAT;
         }
-        else {
-            int random;
-            Result result;
-            int coeff;
 
-            if (target.getType() == Type.BIRD){
-                coeff = 1;
-            }
-            else if (target.getType() == Type.MOUSE){
-                coeff = 2;
-            }
-            else if (target.getType() == Type.WORM){
-                coeff = 5;
-            }
-            else{
-                return Result.WHAT;
-            }
+        int random = new Random().nextInt(coeff * this.age + target.age);
+        Result result = random < coeff * this.age ? Result.SUCCESS : Result.FAIL;
 
-            random = new Random().nextInt(coeff*this.age+target.age);
-
-            if (random < coeff*this.age)
-                result = Result.SUCCESS;
-            else
-                result = Result.FAIL;
-
-            if (result == Result.SUCCESS)
-                target.setState(State.DEAD);
-            else if(target.getType() == Type.BIRD)
-                this.setState(State.DEAD);
-
-            return result;
+        if (result == Result.SUCCESS) {
+            target.setState(State.DEAD);
+        } else if (target instanceof Bird) {
+            this.setState(State.DEAD);
         }
+
+        return result;
     }
 
     @Override
     public Result eat(Animal target) {
+        if (target instanceof Bird || target instanceof Cat || this.state == State.DEAD)
+            return Result.WHAT;
         if (target.state == State.ALIVE)
             return Result.FAIL;
-        else if (target.type == Type.BIRD || target.type == Type.CAT || this.state == State.DEAD)
-            return Result.WHAT;
-        else
-            return Result.SUCCESS;
+
+        return Result.SUCCESS;
     }
 
 }
