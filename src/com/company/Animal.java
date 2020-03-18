@@ -1,8 +1,32 @@
 package com.company;
 
+
+import com.utilities.Tools;
+
 import java.io.BufferedWriter;
 
+enum State {
+    DEAD(false),
+    ALIVE(true);
 
+    boolean isAlive;
+
+    State(boolean isAlive) {
+        this.isAlive = isAlive;
+    }
+}
+
+enum Result{
+    SUCCESS(1),
+    FAIL(0),
+    WHAT(-1);
+
+    int result;
+
+    Result(int res) {
+        this.result = res;
+    }
+}
 
 abstract class Animal {
     protected State state;
@@ -33,6 +57,16 @@ abstract class Animal {
                 "Max age: " + this.maxAge
         };
         Tools.writeArray(writer, attributes);
+    }
+
+
+
+    @java.lang.Override
+    public java.lang.String toString() {
+        return this.getClass().getSimpleName() +
+                "state " + state +
+                "age " + age +
+                "maxAge " + maxAge;
     }
 
     abstract public Result attack(Animal target);

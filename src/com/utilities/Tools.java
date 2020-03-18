@@ -1,32 +1,13 @@
-package com.company;
+package com.utilities;
+
+import com.company.*;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.function.Supplier;
 
-enum State {
-    DEAD(false),
-    ALIVE(true);
 
-    boolean isAlive;
-
-    State(boolean isAlive) {
-        this.isAlive = isAlive;
-    }
-}
-
-enum Result{
-    SUCCESS(1),
-    FAIL(0),
-    WHAT(-1);
-
-    int result;
-
-    Result(int res) {
-        this.result = res;
-    }
-}
 
 public class Tools {
 

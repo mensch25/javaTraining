@@ -1,6 +1,11 @@
 package com.company;
 
-import java.io.*;
+import com.utilities.Tools;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -27,12 +32,11 @@ public class Main implements Runnable {
                 ">4 - Eat",
                 ">5 - Quit"
         };
-        Map<Integer, Consumer<Void>> menuMap = Map.ofEntries(
-                Map.entry(1, v -> createAnimal(reader, writer)),
-                Map.entry(2, v -> printList(writer)),
-                Map.entry(3, v -> attackAnimal(reader, writer)),
-                Map.entry(4, v -> eatAnimal(reader, writer))
-        );
+        Map<Integer, Consumer<Void>> menuMap = Map.of(
+                1, v -> createAnimal(reader, writer),
+                2, v -> printList(writer),
+                3, v -> attackAnimal(reader, writer),
+                4, v -> eatAnimal(reader, writer));
 
         while (true) {
             Tools.writeArray(writer, menuPoints);
@@ -141,8 +145,7 @@ public class Main implements Runnable {
             Map<Result, String> resultOfEating = Map.of(
                 Result.FAIL, "It cant eat it",
                 Result.SUCCESS, "It ate it",
-                Result.WHAT, "It wouldn't eat it"
-            );
+                Result.WHAT, "It wouldn't eat it");
             Tools.writeString(writer, resultOfEating.get(result));
         }
     }
