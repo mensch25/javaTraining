@@ -1,12 +1,10 @@
 package com.animals;
 
 
-import com.utilities.Output;
+import com.utilities.InputOutput;
 import com.utilities.State;
 import com.utilities.Result;
 import com.utilities.Tools;
-
-import java.io.BufferedWriter;
 
 abstract public class Animal {
     protected State state;
@@ -33,14 +31,14 @@ abstract public class Animal {
         return maxAge;
     }
 
-    public void print(Output output){
+    public void print(){
         String[] attributes = {
                 "Type: " + this.getClass().getSimpleName(),
                 "State: " + this.state,
                 "Age: " + this.age,
                 "Max age: " + this.maxAge
         };
-        Tools.writeArray(output, attributes);
+        Tools.writeArray(attributes);
     }
 
 

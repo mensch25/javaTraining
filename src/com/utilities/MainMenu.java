@@ -7,8 +7,7 @@ import java.util.function.Consumer;
 import static com.company.Main.*;
 
 public class MainMenu extends JsonObject{
-    static Output output;
-    public static BufferedReader reader;
+    static InputOutput inputOutput;
 
     public static Menu menu = new Menu("\nWhat u gonna do?",  new String[]{
                 "Create new animal",
@@ -18,9 +17,12 @@ public class MainMenu extends JsonObject{
                 "Quit"});
 
     public static Map<Integer, Consumer<Void>> menuMap = Map.of(
-            1, v -> createAnimal(reader, output),
-            2, v -> printList(output),
-            3, v -> attackAnimal(reader, output),
-            4, v -> eatAnimal(reader, output));
+            1, v -> createAnimal(),
+            2, v -> printList(),
+            3, v -> attackAnimal(),
+            4, v -> eatAnimal());
 
+    public static String toText() {
+        return menu.toString();
+    }
 }

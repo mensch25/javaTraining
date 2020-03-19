@@ -1,6 +1,5 @@
 package com.utilities;
 
-import java.util.Arrays;
 
 public class Menu {
     String message;

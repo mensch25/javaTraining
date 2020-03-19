@@ -8,4 +8,6 @@ abstract public class JsonObject {
     public String toJsonString() {
         return JsonParser.classToJsonString(this);
     }
+
+
 }
