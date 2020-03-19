@@ -1,17 +1,20 @@
 package com.utilities;
 
-import com.company.*;
+import com.animals.*;
+import com.company.Main;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.function.Supplier;
 
+import static com.company.Main.fileWriter;
+import static com.company.Main.jsonWriter;
 
 
 public class Tools {
 
-    public static AgedAnimal createAgedAnimalByClass(Class clazz, int age) {
+    public static Animal createAnimalByClass(Class clazz, int age) {
         if (clazz == Cat.class) {
             return new Cat(age);
         } else if (clazz == Mouse.class) {
@@ -23,9 +26,9 @@ public class Tools {
         }
     }
 
-    public static void writeArray(BufferedWriter writer, String[] texts) {
+    public static void writeArray(BufferedWriter consoleWriter, String[] texts) {
         for (String text : texts) {
-            writeString(writer, text);
+            writeString(consoleWriter, text);
         }
     }
 
@@ -41,11 +44,16 @@ public class Tools {
         }
     }
 
-    public static void writeString(BufferedWriter writer, String string) {
+    public static void writeString(BufferedWriter consoleWriter, String string) {
         try {
-            writer.write(string);
-            writer.newLine();
-            writer.flush();
+            consoleWriter.write(string);
+            consoleWriter.newLine();
+            consoleWriter.flush();
+            if (fileWriter != null) {
+                fileWriter.write(string);
+                fileWriter.newLine();
+                fileWriter.flush();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

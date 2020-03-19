@@ -1,19 +1,21 @@
-package com.company;
+package com.animals;
 
+import com.utilities.State;
+import com.utilities.Result;
 
 import java.util.Map;
 import java.util.Random;
 
-public class Mouse extends AgedAnimal {
+public class Bird extends Animal {
 
     private static Map<Class, Integer> coeffMap = Map.ofEntries(
-            Map.entry(Cat.class, 0),
-            Map.entry(Mouse.class, 1),
+            Map.entry(Bird.class, 1),
+            Map.entry(Mouse.class, 2),
             Map.entry(Worm.class, 5));
 
-    public Mouse(int age) {
+    public Bird(int age) {
         super(age);
-        this.maxAge = 4;
+        this.maxAge = 5;
         this.age = age;
         this.state = this.age > this.maxAge ? State.DEAD : State.ALIVE;
     }
@@ -21,7 +23,7 @@ public class Mouse extends AgedAnimal {
     @Override
     public Result attack(Animal target) {
         Integer coeff;
-        if (target instanceof Bird || !target.isAlive() || this.state == State.DEAD ||
+        if (target instanceof Cat || !target.isAlive() || this.state == State.DEAD ||
                 (coeff = coeffMap.get(target.getClass())) == null) {
             return Result.WHAT;
         }
@@ -31,7 +33,7 @@ public class Mouse extends AgedAnimal {
 
         if (result == Result.SUCCESS) {
             target.setState(State.DEAD);
-        } else if (target instanceof Mouse || target instanceof Cat) {
+        } else if (target instanceof Bird) {
             this.setState(State.DEAD);
         }
 
@@ -40,11 +42,12 @@ public class Mouse extends AgedAnimal {
 
     @Override
     public Result eat(Animal target) {
-        if (target.state == State.ALIVE || this.state == State.DEAD)
-            return Result.FAIL;
-        if (target instanceof Bird || target instanceof Cat)
+        if (target instanceof Bird || target instanceof Cat || this.state == State.DEAD)
             return Result.WHAT;
+        if (target.state == State.ALIVE)
+            return Result.FAIL;
 
         return Result.SUCCESS;
     }
+
 }

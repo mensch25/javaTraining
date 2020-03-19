@@ -1,26 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="69f3f300-154e-43b1-a225-e084616d7847" name="Default Changelist" comment="trying to use toString">
-      <change afterPath="$PROJECT_DIR$/.idea/javaTraining.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/utilities/ConsoleOutput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/utilities/FileOutput.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Animal.java" afterDir="false" />
+    <list default="true" id="69f3f300-154e-43b1-a225-e084616d7847" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/utilities/JsonParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/utilities/Menu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/utilities/Result.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/utilities/State.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zoo/com/company/Animal.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zoo/com/company/Bird.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zoo/com/company/Cat.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zoo/com/company/Main$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zoo/com/company/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zoo/com/company/Mouse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zoo/com/company/Result.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zoo/com/company/State.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zoo/com/company/Type.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/zoo/com/company/Worm.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/AgedAnimal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/animals/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Bird.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/animals/Bird.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Cat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/animals/Cat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Mouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Mouse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Tools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/utilities/Tools.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Mouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/animals/Mouse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Worm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/animals/Worm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/utilities/ConsoleOutput.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/utilities/FileOutput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/utilities/JsonObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/utilities/Tools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/utilities/Tools.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="javaTraining" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1ZJok3aTw1GDf4RuIroFROeZOuq" />
   <component name="ProjectViewState">
@@ -30,11 +56,28 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Background" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true" show_console_on_std_out="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.Main" />
+      <module name="javaTraining" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="11" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -47,6 +90,14 @@
       <option name="presentableId" value="Default" />
       <updated>1584566697046</updated>
     </task>
+    <task id="LOCAL-00001" summary="trying to use toString">
+      <created>1584574758138</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1584574758139</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -58,26 +109,70 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="555" y="214" width="800" height="677" key="#Project_Structure/0.27.1920.1053@0.27.1920.1053" timestamp="1584574682020" />
-    <state x="418" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584573964323">
+    <state x="418" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584579318242">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="418" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1584573964323" />
-    <state x="683" y="256" width="544" height="592" key="#com.intellij.ide.util.MemberChooser" timestamp="1584568926507">
+    <state x="418" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1584579318242" />
+    <state x="743" y="260" width="424" height="584" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1584579293737">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="683" y="256" width="544" height="592" key="#com.intellij.ide.util.MemberChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1584568926507" />
+    <state x="743" y="260" width="424" height="584" key="#com.intellij.ide.macro.MacrosDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1584579293737" />
+    <state x="683" y="256" width="544" height="592" key="#com.intellij.ide.util.MemberChooser" timestamp="1584612344335">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="683" y="256" width="544" height="592" key="#com.intellij.ide.util.MemberChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1584612344335" />
+    <state x="692" y="337" width="525" height="430" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1584574913758">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="692" y="337" width="525" height="430" key="#com.intellij.ide.util.TreeClassChooserDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1584574913758" />
     <state x="801" y="444" width="308" height="216" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1584567146542">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="801" y="444" width="308" height="216" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1584567146542" />
-    <state x="973" y="85" width="782" height="921" key="CommitChangelistDialog2" timestamp="1584574743362">
+    <state x="872" y="257" width="166" height="590" key="#xdebugger.XInspectDialog" timestamp="1584581572155">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="973" y="85" width="782" height="921" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1584574743362" />
+    <state x="872" y="257" width="166" height="590" key="#xdebugger.XInspectDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1584581572155" />
+    <state x="973" y="85" width="782" height="921" key="CommitChangelistDialog2" timestamp="1584613557823">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="973" y="85" width="782" height="921" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1584613557823" />
     <state x="543" y="260" width="814" height="585" key="FileChooserDialogImpl" timestamp="1584574679441">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="543" y="260" width="814" height="585" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1584574679441" />
+    <state width="1874" height="304" key="GridCell.Tab.0.bottom" timestamp="1584613557842">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="304" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1584613557842" />
+    <state width="1874" height="304" key="GridCell.Tab.0.center" timestamp="1584613557842">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="304" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1584613557842" />
+    <state width="1874" height="304" key="GridCell.Tab.0.left" timestamp="1584613557841">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="304" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1584613557841" />
+    <state width="1874" height="304" key="GridCell.Tab.0.right" timestamp="1584613557842">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="304" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1584613557842" />
+    <state width="1874" height="344" key="GridCell.Tab.1.bottom" timestamp="1584581992206">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="344" key="GridCell.Tab.1.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1584581992206" />
+    <state width="1874" height="344" key="GridCell.Tab.1.center" timestamp="1584581992205">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="344" key="GridCell.Tab.1.center/0.27.1920.1053@0.27.1920.1053" timestamp="1584581992205" />
+    <state width="1874" height="344" key="GridCell.Tab.1.left" timestamp="1584581992205">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="344" key="GridCell.Tab.1.left/0.27.1920.1053@0.27.1920.1053" timestamp="1584581992205" />
+    <state width="1874" height="344" key="GridCell.Tab.1.right" timestamp="1584581992205">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1874" height="344" key="GridCell.Tab.1.right/0.27.1920.1053@0.27.1920.1053" timestamp="1584581992205" />
     <state x="443" y="130" width="1024" height="845" key="SettingsEditor" timestamp="1584574720995">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -86,17 +181,21 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="616" y="380" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1584574252991" />
-    <state x="728" y="472" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584574216583">
+    <state x="728" y="472" width="454" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584574802221">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="728" y="472" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.27.1920.1053@0.27.1920.1053" timestamp="1584574216583" />
+    <state x="728" y="472" width="454" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.27.1920.1053@0.27.1920.1053" timestamp="1584574802221" />
+    <state x="526" y="229" width="868" height="646" key="find.popup" timestamp="1584582062744">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="526" y="229" width="868" height="646" key="find.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1584582062744" />
     <state x="624" y="253" key="run.anything.popup" timestamp="1584574224408">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="624" y="253" key="run.anything.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1584574224408" />
-    <state x="623" y="257" width="672" height="678" key="search.everywhere.popup" timestamp="1584574353678">
+    <state x="623" y="257" width="672" height="678" key="search.everywhere.popup" timestamp="1584578041539">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="623" y="257" width="672" height="678" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1584574353678" />
+    <state x="623" y="257" width="672" height="678" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1584578041539" />
   </component>
 </project>

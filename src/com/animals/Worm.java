@@ -1,6 +1,9 @@
-package com.company;
+package com.animals;
 
-public class Worm extends AgedAnimal {
+import com.utilities.State;
+import com.utilities.Result;
+
+public class Worm extends Animal {
 
     public Worm(int age) {
         super(age);

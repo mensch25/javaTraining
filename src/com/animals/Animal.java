@@ -1,37 +1,20 @@
-package com.company;
+package com.animals;
 
 
+import com.utilities.State;
+import com.utilities.Result;
 import com.utilities.Tools;
 
 import java.io.BufferedWriter;
 
-enum State {
-    DEAD(false),
-    ALIVE(true);
-
-    boolean isAlive;
-
-    State(boolean isAlive) {
-        this.isAlive = isAlive;
-    }
-}
-
-enum Result{
-    SUCCESS(1),
-    FAIL(0),
-    WHAT(-1);
-
-    int result;
-
-    Result(int res) {
-        this.result = res;
-    }
-}
-
-abstract class Animal {
+abstract public class Animal {
     protected State state;
     protected int age;
     protected int maxAge;
+
+    public Animal(int age) {
+        this.age = age;
+    }
 
     public void setState(State state) {
         this.state = state;
@@ -49,20 +32,19 @@ abstract class Animal {
         return maxAge;
     }
 
-    public void print(BufferedWriter writer){
+    public void print(BufferedWriter consoleWriter){
         String[] attributes = {
                 "Type: " + this.getClass().getSimpleName(),
                 "State: " + this.state,//(this.state == State.ALIVE ? "Alive" : "Dead"),
                 "Age: " + this.age,
                 "Max age: " + this.maxAge
         };
-        Tools.writeArray(writer, attributes);
+        Tools.writeArray(consoleWriter, attributes);
     }
 
 
 
-    @java.lang.Override
-    public java.lang.String toString() {
+    public String toJSONString() {
         return this.getClass().getSimpleName() +
                 "state " + state +
                 "age " + age +
