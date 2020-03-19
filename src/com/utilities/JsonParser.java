@@ -8,9 +8,20 @@ class JsonParser {
 
     static String classToJsonString(Object object) {
         StringBuilder result = new StringBuilder("{\n\"class\" : \"" + object.getClass().getSimpleName() + "\"");
-        Field[] fields = object.getClass()
-                                .getSuperclass()
-                                .getDeclaredFields();
+        Class clazz = object.getClass();
+
+        Field[] fields = clazz.getSuperclass().getDeclaredFields();
+        addFields(result, fields, object);
+
+        fields = clazz.getDeclaredFields();
+
+        addFields(result, fields, object);
+
+        result.append("\n}");
+        return result.toString();
+    }
+
+    private static void addFields(StringBuilder result, Field[] fields, Object object){
         Arrays.stream(fields).forEach(field -> {
             field.setAccessible(true);
             try {
@@ -23,24 +34,7 @@ class JsonParser {
                 e.printStackTrace();
             }
         });
-
-        fields = object.getClass()
-                .getDeclaredFields();
-
-        for (Field field : fields){
-            field.setAccessible(true);
-            try {
-                result.append(",\n\"").
-                        append(field.getName()).
-                        append("\" : \"").
-                        append(field.get(object)).
-                        append("\"");
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
-
-        result.append("\n}");
-        return result.toString();
     }
 }
+
+

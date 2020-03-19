@@ -1,16 +1,11 @@
 package com.utilities;
 
 import com.animals.*;
-import com.company.Main;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.function.Supplier;
-
-import static com.company.Main.fileWriter;
-import static com.company.Main.jsonWriter;
-
 
 public class Tools {
 
@@ -26,9 +21,9 @@ public class Tools {
         }
     }
 
-    public static void writeArray(BufferedWriter consoleWriter, String[] texts) {
+    public static void writeArray(Output output, String[] texts) {
         for (String text : texts) {
-            writeString(consoleWriter, text);
+            writeString(output, text);
         }
     }
 
@@ -44,15 +39,15 @@ public class Tools {
         }
     }
 
-    public static void writeString(BufferedWriter consoleWriter, String string) {
+    public static void writeString(Output output, String string) {
         try {
-            consoleWriter.write(string);
-            consoleWriter.newLine();
-            consoleWriter.flush();
-            if (fileWriter != null) {
-                fileWriter.write(string);
-                fileWriter.newLine();
-                fileWriter.flush();
+            output.consoleWriter.write(string);
+            output.consoleWriter.newLine();
+            output.consoleWriter.flush();
+            if (output.fileWriter != null) {
+                output.fileWriter.write(string);
+                output.fileWriter.newLine();
+                output.fileWriter.flush();
             }
         } catch (IOException e) {
             e.printStackTrace();
