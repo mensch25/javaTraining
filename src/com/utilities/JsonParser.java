@@ -11,7 +11,6 @@ class JsonParser {
         Field[] fields = object.getClass()
                                 .getSuperclass()
                                 .getDeclaredFields();
-
         Arrays.stream(fields).forEach(field -> {
             field.setAccessible(true);
             try {

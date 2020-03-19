@@ -1,6 +1,7 @@
 package com.utilities;
 
 abstract public class JsonObject {
+
     static int id;
     String type;
 

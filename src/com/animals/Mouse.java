@@ -9,6 +9,8 @@ import java.util.Random;
 
 public class Mouse extends Animal {
 
+    protected float tailLength;
+
     private static Map<Class, Integer> coeffMap = Map.ofEntries(
             Map.entry(Cat.class, 0),
             Map.entry(Mouse.class, 1),
@@ -17,7 +19,14 @@ public class Mouse extends Animal {
     public Mouse(int age) {
         super(age);
         this.maxAge = 4;
-        this.age = age;
+        this.tailLength = (float) 0.2;
+        this.state = this.age > this.maxAge ? State.DEAD : State.ALIVE;
+    }
+
+    public Mouse(int age, float tailLength) {
+        super(age);
+        this.maxAge = 4;
+        this.tailLength = tailLength;
         this.state = this.age > this.maxAge ? State.DEAD : State.ALIVE;
     }
 

@@ -8,6 +8,8 @@ import java.util.Random;
 
 public class Bird extends Animal {
 
+    protected String sing;
+
     private static Map<Class, Integer> coeffMap = Map.ofEntries(
             Map.entry(Bird.class, 1),
             Map.entry(Mouse.class, 2),
@@ -16,7 +18,14 @@ public class Bird extends Animal {
     public Bird(int age) {
         super(age);
         this.maxAge = 5;
-        this.age = age;
+        this.sing = "default";
+        this.state = this.age > this.maxAge ? State.DEAD : State.ALIVE;
+    }
+
+    public Bird(int age, String sing) {
+        super(age);
+        this.maxAge = 5;
+        this.sing = sing;
         this.state = this.age > this.maxAge ? State.DEAD : State.ALIVE;
     }
 

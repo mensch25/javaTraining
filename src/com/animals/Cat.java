@@ -19,7 +19,6 @@ public class Cat extends Animal {
     public Cat(int age, int hairColor) {
         super(age);
         this.maxAge = 15;
-        this.age = age;
         this.state = this.age > this.maxAge ? State.DEAD : State.ALIVE;
         this.hairColor = hairColor;
     }
@@ -28,7 +27,6 @@ public class Cat extends Animal {
     public Cat(int age) {
         super(age);
         this.maxAge = 15;
-        this.age = age;
         this.state = this.age > this.maxAge ? State.DEAD : State.ALIVE;
         this.hairColor = 0xFFFF;
     }

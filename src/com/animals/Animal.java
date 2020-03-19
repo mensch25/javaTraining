@@ -35,21 +35,13 @@ abstract public class Animal {
     public void print(BufferedWriter consoleWriter){
         String[] attributes = {
                 "Type: " + this.getClass().getSimpleName(),
-                "State: " + this.state,//(this.state == State.ALIVE ? "Alive" : "Dead"),
+                "State: " + this.state,
                 "Age: " + this.age,
                 "Max age: " + this.maxAge
         };
         Tools.writeArray(consoleWriter, attributes);
     }
 
-
-
-    public String toJSONString() {
-        return this.getClass().getSimpleName() +
-                "state " + state +
-                "age " + age +
-                "maxAge " + maxAge;
-    }
 
     abstract public Result attack(Animal target);
 

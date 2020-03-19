@@ -12,10 +12,10 @@ import java.util.function.Consumer;
 public class Main {
 
     static private List<Animal> zoo = new ArrayList<>();
-    static public BufferedWriter fileWriter = null;
-    static public BufferedWriter jsonWriter = null;
 
     public static void main(String[] args) {
+        BufferedWriter fileWriter = null;
+        BufferedWriter jsonWriter = null;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter consoleWriter = new BufferedWriter(new OutputStreamWriter(System.out));
 
@@ -29,6 +29,7 @@ public class Main {
             } catch (IOException e) {
                 Tools.writeString(consoleWriter, "Cannot open output file");
             }
+        Output output = new Output(consoleWriter, fileWriter, jsonWriter);
 
         String[] menuPoints = {
                 "\nWhat u gonna do?",
