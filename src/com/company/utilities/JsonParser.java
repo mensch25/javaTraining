@@ -1,4 +1,4 @@
-package com.utilities;
+package com.company.utilities;
 
 
 import java.lang.reflect.Field;
@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 class JsonParser {
 
-    static String classToJsonString(Object object) {
+    String classToJsonString(Object object) {
         StringBuilder result = new StringBuilder("{\n\"class\" : \"" + object.getClass().getSimpleName() + "\"");
         Class clazz = object.getClass();
 
@@ -21,7 +21,7 @@ class JsonParser {
         return result.toString();
     }
 
-    private static void addFields(StringBuilder result, Field[] fields, Object object){
+    private void addFields(StringBuilder result, Field[] fields, Object object) {
         Arrays.stream(fields).forEach(field -> {
             field.setAccessible(true);
             try {

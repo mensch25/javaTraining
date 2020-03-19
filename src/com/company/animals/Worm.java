@@ -1,7 +1,4 @@
-package com.animals;
-
-import com.utilities.State;
-import com.utilities.Result;
+package com.company.animals;
 
 public class Worm extends Animal {
 

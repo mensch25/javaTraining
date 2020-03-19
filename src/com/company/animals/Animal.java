@@ -1,12 +1,9 @@
-package com.animals;
+package com.company.animals;
 
 
-import com.utilities.InputOutput;
-import com.utilities.State;
-import com.utilities.Result;
-import com.utilities.Tools;
+import com.company.utilities.Tools;
 
-abstract public class Animal {
+public abstract class Animal {
     protected State state;
     protected int age;
     protected int maxAge;

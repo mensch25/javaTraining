@@ -1,8 +1,7 @@
-package com.utilities;
+package com.company.utilities;
 
-import com.animals.*;
+import com.company.animals.*;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.function.Supplier;
 
@@ -28,7 +27,7 @@ public class Tools {
 
     public static int readPositiveIntOrAction(Supplier<Integer> action) {
         try {
-            int parsedInt = Integer.parseInt(InputOutput.reader.readLine());
+            int parsedInt = Integer.parseInt(InputOutput.inputOutput.reader.readLine());
             if (parsedInt >= 0)
                 return parsedInt;
 
@@ -40,13 +39,13 @@ public class Tools {
 
     public static void writeString(String string) {
         try {
-            InputOutput.consoleWriter.write(string);
-            InputOutput.consoleWriter.newLine();
-            InputOutput.consoleWriter.flush();
-            if (InputOutput.fileWriter != null) {
-                InputOutput.fileWriter.write(string);
-                InputOutput.fileWriter.newLine();
-                InputOutput.fileWriter.flush();
+            InputOutput.inputOutput.consoleWriter.write(string);
+            InputOutput.inputOutput.consoleWriter.newLine();
+            InputOutput.inputOutput.consoleWriter.flush();
+            if (InputOutput.inputOutput.fileWriter != null) {
+                InputOutput.inputOutput.fileWriter.write(string);
+                InputOutput.inputOutput.fileWriter.newLine();
+                InputOutput.inputOutput.fileWriter.flush();
             }
         } catch (IOException e) {
             e.printStackTrace();

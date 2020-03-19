@@ -1,4 +1,4 @@
-package com.utilities;
+package com.company.animals;
 
 public enum State {
     DEAD(false),

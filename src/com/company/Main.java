@@ -1,7 +1,7 @@
 package com.company;
 
-import com.animals.*;
-import com.utilities.*;
+import com.company.animals.*;
+import com.company.utilities.*;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -11,15 +11,19 @@ import java.util.function.Consumer;
 
 public class Main {
 
-    static private List<Animal> zoo = new ArrayList<>();
+    private List<Animal> zoo = new ArrayList<>();
 
     public static void main(String[] args) {
+        new Main().run(args);
+    }
+
+    public void run(String[] args) {
         BufferedWriter fileWriter = null;
         BufferedWriter jsonWriter = null;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter consoleWriter = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        if (args.length > 0)
+        if (args.length > 0) {
             try {
                 if (args[0].equals("-f")) {
                     fileWriter = new BufferedWriter(new FileWriter(args[1]));
@@ -27,18 +31,21 @@ public class Main {
                     jsonWriter = new BufferedWriter(new FileWriter(args[1]));
                 }
             } catch (IOException e) {
-                InputOutput.init(reader, consoleWriter,null,null);
+                InputOutput.init(reader, consoleWriter, null, null);
                 Tools.writeString("Cannot open output file");
             }
+        }
 
+        MainMenu mainMenu = new MainMenu();
+        mainMenu.main = this;
         InputOutput.init(reader, consoleWriter, fileWriter, jsonWriter);
 
         while (true) {
-            Tools.writeString(MainMenu.toText());
+            Tools.writeString(mainMenu.toString());
 
             int cmd = Tools.readPositiveIntOrAction(() -> -1);
             Consumer<Void> consumer;
-            if(cmd == 5 || (consumer = MainMenu.menuMap.get(cmd)) == null) {
+            if(cmd == 5 || (consumer = mainMenu.menuMap.get(cmd)) == null) {
                 String text = cmd == 5 ? "Good bye" : "Incorrect command, please try again";
                 Tools.writeString(text);
                 break;
@@ -49,7 +56,7 @@ public class Main {
     }
 
 
-    public static void createAnimal() {
+    public void createAnimal() {
         String[] menuPoints = {
                 "Cat",
                 "Mouse",
@@ -85,14 +92,14 @@ public class Main {
          }
     }
 
-    public static void printList() {
+    public void printList() {
         for (int i = 0; i < zoo.size(); ++i) {
             Tools.writeString("\nid "+i);
             zoo.get(i).print();
         }
     }
 
-    public static void attackAnimal() {
+    public void attackAnimal() {
         Tools.writeString("Choose attacker by index: ");
         int attackerIndex = Tools.readPositiveIntOrAction(() -> {
             Tools.writeString("Incorrect index, try again");
@@ -121,7 +128,7 @@ public class Main {
 
     }
 
-    public static void eatAnimal() {
+    public void eatAnimal() {
         Tools.writeString("Choose feeding animal by index: ");
         int feedingIndex = Tools.readPositiveIntOrAction(() -> -1);
 
@@ -143,5 +150,6 @@ public class Main {
             Tools.writeString(resultOfEating.get(result));
         }
     }
+
 
 }

@@ -1,40 +1,35 @@
-package com.animals;
-
-import com.utilities.State;
-import com.utilities.Result;
+package com.company.animals;
 
 import java.util.Map;
 import java.util.Random;
 
+public class Bird extends Animal {
 
-public class Cat extends Animal {
-
-    protected int hairColor;
+    protected String sing;
 
     private static Map<Class, Integer> coeffMap = Map.ofEntries(
-            Map.entry(Cat.class, 1),
-            Map.entry(Mouse.class, 5),
-            Map.entry(Bird.class, 3));
+            Map.entry(Bird.class, 1),
+            Map.entry(Mouse.class, 2),
+            Map.entry(Worm.class, 5));
 
-    public Cat(int age, int hairColor) {
+    public Bird(int age) {
         super(age);
-        this.maxAge = 15;
+        this.maxAge = 5;
+        this.sing = "default";
         this.state = this.age > this.maxAge ? State.DEAD : State.ALIVE;
-        this.hairColor = hairColor;
     }
 
-
-    public Cat(int age) {
+    public Bird(int age, String sing) {
         super(age);
-        this.maxAge = 15;
+        this.maxAge = 5;
+        this.sing = sing;
         this.state = this.age > this.maxAge ? State.DEAD : State.ALIVE;
-        this.hairColor = 0xFFFF;
     }
 
     @Override
     public Result attack(Animal target) {
         Integer coeff;
-        if (target instanceof Worm || !target.isAlive() || this.state == State.DEAD ||
+        if (target instanceof Cat || !target.isAlive() || this.state == State.DEAD ||
                 (coeff = coeffMap.get(target.getClass())) == null) {
             return Result.WHAT;
         }
@@ -44,7 +39,7 @@ public class Cat extends Animal {
 
         if (result == Result.SUCCESS) {
             target.setState(State.DEAD);
-        } else if (target instanceof Cat) {
+        } else if (target instanceof Bird) {
             this.setState(State.DEAD);
         }
 
@@ -53,12 +48,12 @@ public class Cat extends Animal {
 
     @Override
     public Result eat(Animal target) {
-        if (target.isAlive() || this.state == State.DEAD)
-            return Result.FAIL;
-        if (target instanceof Worm || target instanceof Cat)
+        if (target instanceof Bird || target instanceof Cat || this.state == State.DEAD)
             return Result.WHAT;
+        if (target.state == State.ALIVE)
+            return Result.FAIL;
 
         return Result.SUCCESS;
-
     }
+
 }

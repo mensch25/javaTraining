@@ -1,8 +1,5 @@
-package com.animals;
+package com.company.animals;
 
-
-import com.utilities.State;
-import com.utilities.Result;
 
 import java.util.Map;
 import java.util.Random;
@@ -19,7 +16,7 @@ public class Mouse extends Animal {
     public Mouse(int age) {
         super(age);
         this.maxAge = 4;
-        this.tailLength = (float) 0.2;
+        this.tailLength = 0.2f;
         this.state = this.age > this.maxAge ? State.DEAD : State.ALIVE;
     }
 
